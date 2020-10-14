@@ -1,0 +1,33 @@
+#!/usr/bin/make -f
+
+UPSTREAM_GIT := https://github.com/GrahamDumpleton/wrapt.git
+include /usr/share/openstack-pkg-tools/pkgos.make
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+bindnow
+
+%:
+	dh $@ --buildsystem=python_distutils --with python3,sphinxdoc
+
+override_dh_auto_clean:
+	rm -rf build
+	find . -iname '*.pyc' -delete
+	for i in $$(find . -type d -iname __pycache__) ; do rm -rf $$i ; done
+
+override_dh_auto_build:
+	echo "Do nothing..."
+
+override_dh_auto_install:
+	pkgos-dh_auto_install --no-py2
+
+override_dh_auto_test:
+ifeq (,$(findstring nocheck, $(DEB_BUILD_OPTIONS)))
+	ln -s src wrapt
+	set -ex && for pyvers in $(PYTHON3S); do \
+		PYTHONPATH=.:src python$$pyvers -m pytest -v tests ; \
+	done
+	rm -f wrapt
+endif
+
+override_dh_sphinxdoc:
+	python3 -m sphinx -b html docs debian/python-wrapt-doc/usr/share/doc/python-wrapt-doc/html
+	dh_sphinxdoc -O--buildsystem=python_distutils

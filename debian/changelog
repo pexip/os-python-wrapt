@@ -1,0 +1,144 @@
+python-wrapt (1.12.1-4) unstable; urgency=medium
+
+  * Fixed debian/watch.
+  * Add a debian/salsa-ci.yml.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 14 Oct 2020 15:10:08 +0200
+
+python-wrapt (1.12.1-3) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 14 Oct 2020 09:32:12 +0200
+
+python-wrapt (1.12.1-2) experimental; urgency=medium
+
+  * Add Update_for_fixed_outer_classmethod_behavior_in_Python_3.9.patch
+    (Closes: #972031).
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 13 Oct 2020 10:54:21 +0200
+
+python-wrapt (1.12.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Up debhelper-compat to version 11.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 09 Sep 2020 08:56:31 +0200
+
+python-wrapt (1.11.2-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Mon, 21 Oct 2019 10:41:58 +0200
+
+python-wrapt (1.11.2-1) experimental; urgency=medium
+
+  * New upstream release.
+
+ -- Thomas Goirand <zigo@debian.org>  Tue, 24 Sep 2019 13:07:14 +0200
+
+python-wrapt (1.10.11-2) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Use debhelper-compat instead of debian/compat.
+
+  [ Thomas Goirand ]
+  * Removed Python 2 support (Closes: #938264).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 05 Sep 2019 17:14:31 +0200
+
+python-wrapt (1.10.11-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * d/control: Set Vcs-* to salsa.debian.org
+  * d/control: Use team+openstack@tracker.debian.org as maintainer
+
+  [ Thomas Goirand ]
+  * New upstream release:
+    - Fix segfaults (Closes: #875797).
+  * Fix PYTHONPATH when running tests.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 07 Sep 2018 14:07:50 +0200
+
+python-wrapt (1.9.0-3) unstable; urgency=medium
+
+  * Team upload.
+
+  [ Daniel Baumann ]
+  * Updating vcs fields. (Closes: #875798)
+  * Updating copyright format url.
+  * Updating maintainer field.
+  * Running wrap-and-sort -bast.
+  * Removing gbp.conf, not used anymore or should be specified in the
+    developers dotfiles.
+
+  [ Ondřej Nový ]
+  * d/watch: Use pypi.debian.net (Closes: #875799)
+  * Updating standards version to 4.1.1.
+
+ -- Ondřej Nový <onovy@debian.org>  Tue, 31 Oct 2017 16:10:07 +0100
+
+python-wrapt (1.9.0-2) unstable; urgency=medium
+
+  * Repair the mistake of build-depends-indep: the binaries are *not*
+    arch: all.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 09 Sep 2016 13:22:18 +0000
+
+python-wrapt (1.9.0-1) unstable; urgency=medium
+
+  [ Ondřej Nový ]
+  * Fixed VCS URLs (https).
+  * d/rules: Changed UPSTREAM_GIT protocol to https
+
+  [ Thomas Goirand ]
+  * New upstream release (Closes: #765064):
+    - Drop do-not-use-embedded-six.py.patch and
+      no-from-wrapt-import-six-in-tests.patch, as src/six.py is gone upstream.
+    - Drop fix-python-3.4-compat.patch applied upstream.
+    - Drop python-3.2-compat.patch as upstream isn't using embedded six.
+  * Standards-Version is now 3.9.6 (no change).
+  * Removed non-active maintainers.
+  * Reviewed (build-)depends and ran wrap-and-sort -t -a.
+  * Simplified debian/rules using goodies from openstack-pkg-tools >= 52~.
+  * Using python$$pyvers -m pytest to run tests (Closes: #835247).
+  * Fixed debian/copyright ordering.
+  * Standards-Version: 3.9.8 (no change).
+  * Added export DEB_BUILD_MAINT_OPTIONS = hardening=+bindnow.
+  * Removed do-not-use-the-rdt-sphinx-theme.patch and build-depends on the
+    python-sphinx-rtd-theme package.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 09 Sep 2016 08:05:11 +0000
+
+python-wrapt (1.8.0-5) unstable; urgency=medium
+
+  * Added do-not-run-test_proxy_attribute.patch to avoid FTBFS. Thanks to David
+    Suárez <david.sephirot@gmail.com> for the bug report (Closes: #755325).
+
+ -- Thomas Goirand <zigo@debian.org>  Sat, 26 Jul 2014 07:37:40 +0000
+
+python-wrapt (1.8.0-4) unstable; urgency=medium
+
+  * wrapt is of arch "any" and not "all", therefore all the build-depends-indep
+    should be in build-depends. This upload fixes that.
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 08 Jun 2014 23:34:47 +0800
+
+python-wrapt (1.8.0-3) unstable; urgency=medium
+
+  * Added missing depends on python-six / python3-six (Closes: #750579).
+
+ -- Thomas Goirand <zigo@debian.org>  Sun, 08 Jun 2014 14:17:01 +0000
+
+python-wrapt (1.8.0-2) unstable; urgency=medium
+
+  * Moves python-sphinx to build-depends instead of build-depends-indep.
+    (Closes: #750579).
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 05 Jun 2014 06:35:41 +0000
+
+python-wrapt (1.8.0-1) unstable; urgency=low
+
+  * Initial release. (Closes: #749594)
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 28 May 2014 16:33:31 +0800
