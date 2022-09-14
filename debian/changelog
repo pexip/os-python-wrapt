@@ -1,4 +1,4 @@
-python-wrapt (1.12.1-4pexip1) pexip; urgency=medium
+python-wrapt (1.12.1-4pexip1) pexip-bullseye; urgency=medium
 
   * Prepare Pexip packaging
 
