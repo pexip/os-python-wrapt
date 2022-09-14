@@ -1,3 +1,9 @@
+python-wrapt (1.12.1-4pexip1) pexip; urgency=medium
+
+  * Prepare Pexip packaging
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Wed, 14 Sep 2022 14:29:28 +0100
+
 python-wrapt (1.12.1-4) unstable; urgency=medium
 
   * Fixed debian/watch.
