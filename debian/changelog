@@ -1,3 +1,25 @@
+python-wrapt (1.14.1-2) unstable; urgency=medium
+
+  * Uploading to unstable.
+
+ -- Thomas Goirand <zigo@debian.org>  Fri, 23 Sep 2022 12:36:55 +0200
+
+python-wrapt (1.14.1-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Add autopkgtest.
+
+ -- Thomas Goirand <zigo@debian.org>  Wed, 31 Aug 2022 10:23:45 +0200
+
+python-wrapt (1.13.3-1) unstable; urgency=medium
+
+  * New upstream release.
+    - Fixes FTBFS in tests (Closes: #999392).
+  * Removed patch applied upstream:
+    - Update_for_fixed_outer_classmethod_behavior_in_Python_3.9.patch.
+
+ -- Thomas Goirand <zigo@debian.org>  Thu, 11 Nov 2021 17:45:02 +0100
+
 python-wrapt (1.12.1-4) unstable; urgency=medium
 
   * Fixed debian/watch.
