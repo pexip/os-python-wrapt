@@ -1,3 +1,9 @@
+python-wrapt (1.12.1-4pexip2) pexip; urgency=medium
+
+  * Switch to pybuild
+
+ -- Huw Jones <huw@pexip.com>  Wed, 14 Jun 2023 15:25:11 +0100
+
 python-wrapt (1.12.1-4pexip1) pexip-bullseye; urgency=medium
 
   * Prepare Pexip packaging
