@@ -1,0 +1,36 @@
+From 5ea017a17947e0e13bcc7d1f67fd498907ba14a7 Mon Sep 17 00:00:00 2001
+From: Graham Dumpleton <Graham.Dumpleton@gmail.com>
+Date: Thu, 5 Aug 2021 12:15:23 +1000
+Subject: [PATCH] Restrict test to Python 3.6 or later.
+
+---
+ tests/conftest.py                                    | 12 ++++++++++++
+ ...t_descriptors_py3.py => test_descriptors_py36.py} |  0
+ 2 files changed, 12 insertions(+)
+ rename tests/{test_descriptors_py3.py => test_descriptors_py36.py} (100%)
+
+diff --git a/tests/conftest.py b/tests/conftest.py
+index 8ed331f..dcb04b9 100644
+--- a/tests/conftest.py
++++ b/tests/conftest.py
+@@ -23,8 +23,20 @@ def construct_dummy(path, parent):
+ def pytest_pycollect_makemodule(path, parent):
+     if '_py33' in path.basename and version < (3, 3):
+         return construct_dummy(path, parent)
++    if '_py34' in path.basename and version < (3, 4):
++        return construct_dummy(path, parent)
++    if '_py35' in path.basename and version < (3, 5):
++        return construct_dummy(path, parent)
++    if '_py36' in path.basename and version < (3, 6):
++        return construct_dummy(path, parent)
+     if '_py37' in path.basename and version < (3, 7):
+         return construct_dummy(path, parent)
++    if '_py38' in path.basename and version < (3, 8):
++        return construct_dummy(path, parent)
++    if '_py39' in path.basename and version < (3, 9):
++        return construct_dummy(path, parent)
++    if '_py310' in path.basename and version < (3, 10):
++        return construct_dummy(path, parent)
+     if '_py3' in path.basename and version < (3, 0):
+         return construct_dummy(path, parent)
+     if '_py2' in path.basename and version >= (3, 0):

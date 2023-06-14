@@ -1,6 +1,7 @@
 python-wrapt (1.12.1-4pexip2) pexip; urgency=medium
 
   * Switch to pybuild
+  * Re-enable tests
 
  -- Huw Jones <huw@pexip.com>  Wed, 14 Jun 2023 15:25:11 +0100
 
