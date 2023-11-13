@@ -1,4 +1,1 @@
 do-not-run-test_proxy_attribute.patch
-Update_for_fixed_outer_classmethod_behavior_in_Python_3.9.patch
-pytest6-fix.patch
-tests-python3.9.patch

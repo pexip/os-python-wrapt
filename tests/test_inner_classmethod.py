@@ -1,12 +1,11 @@
 from __future__ import print_function
 
 import unittest
-import inspect
 import imp
 
 import wrapt
 
-from compat import PY2, PY3, exec_
+from compat import exec_, getfullargspec
 
 DECORATORS_CODE = """
 import wrapt
@@ -95,15 +94,15 @@ class TestNamingInnerClassMethod(unittest.TestCase):
     def test_class_argspec(self):
         # Test preservation of instance method argument specification.
 
-        original_argspec = inspect.getargspec(Original.function)
-        function_argspec = inspect.getargspec(Class.function)
+        original_argspec = getfullargspec(Original.function)
+        function_argspec = getfullargspec(Class.function)
         self.assertEqual(original_argspec, function_argspec)
 
     def test_instance_argspec(self):
         # Test preservation of instance method argument specification.
 
-        original_argspec = inspect.getargspec(Original().function)
-        function_argspec = inspect.getargspec(Class().function)
+        original_argspec = getfullargspec(Original().function)
+        function_argspec = getfullargspec(Class().function)
         self.assertEqual(original_argspec, function_argspec)
 
     def test_class_isinstance(self):
@@ -227,6 +226,108 @@ class TestCallingInnerClassMethod(unittest.TestCase):
                 return (args, kwargs)
 
         result = Class()._function(*_args, **_kwargs)
+
+        self.assertEqual(result, (_args, _kwargs))
+
+    def test_class_externally_applied_wrapper(self):
+        # Test calling staticmethod via class when
+        # the decorator has been applied from external to
+        # the class using wrapping function.
+
+        _args = (1, 2)
+        _kwargs = {'one': 1, 'two': 2}
+
+        class Class(object):
+            @classmethod
+            def _function(cls, *args, **kwargs):
+                return (args, kwargs)
+
+        def _decorator(wrapped, instance, args, kwargs):
+            self.assertEqual(instance, Class)
+            self.assertEqual(args, _args)
+            self.assertEqual(kwargs, _kwargs)
+            return wrapped(*args, **kwargs)
+
+        wrapt.wrap_function_wrapper(Class, "_function", _decorator)
+
+        result = Class._function(*_args, **_kwargs)
+
+        self.assertEqual(result, (_args, _kwargs))
+
+    def test_instance_externally_applied_wrapper(self):
+        # Test calling staticmethod via class instance when
+        # the decorator has been applied from external to
+        # the class using wrapping function.
+
+        _args = (1, 2)
+        _kwargs = {'one': 1, 'two': 2}
+
+        class Class(object):
+            @classmethod
+            def _function(cls, *args, **kwargs):
+                return (args, kwargs)
+
+        def _decorator(wrapped, instance, args, kwargs):
+            self.assertEqual(instance, Class)
+            self.assertEqual(args, _args)
+            self.assertEqual(kwargs, _kwargs)
+            return wrapped(*args, **kwargs)
+
+        wrapt.wrap_function_wrapper(Class, "_function", _decorator)
+
+        result = Class()._function(*_args, **_kwargs)
+
+        self.assertEqual(result, (_args, _kwargs))
+
+    def test_class_externally_passed_wrapper(self):
+        # Test calling classmethod via class when
+        # the decorator has been applied around reference
+        # to the function.
+
+        _args = (1, 2)
+        _kwargs = {'one': 1, 'two': 2}
+
+        class Class(object):
+            @classmethod
+            def _function(cls, *args, **kwargs):
+                return (args, kwargs)
+
+        @wrapt.decorator
+        def _decorator(wrapped, instance, args, kwargs):
+            self.assertEqual(instance, Class)
+            self.assertEqual(args, _args)
+            self.assertEqual(kwargs, _kwargs)
+            return wrapped(*args, **kwargs)
+
+        _function = _decorator(Class._function)
+
+        result = _function(*_args, **_kwargs)
+
+        self.assertEqual(result, (_args, _kwargs))
+
+    def test_instance_externally_passed_wrapper(self):
+        # Test calling classmethod via class instance when
+        # the decorator has been applied around reference
+        # to the function.
+
+        _args = (1, 2)
+        _kwargs = {'one': 1, 'two': 2}
+
+        class Class(object):
+            @classmethod
+            def _function(cls, *args, **kwargs):
+                return (args, kwargs)
+
+        @wrapt.decorator
+        def _decorator(wrapped, instance, args, kwargs):
+            self.assertEqual(instance, Class)
+            self.assertEqual(args, _args)
+            self.assertEqual(kwargs, _kwargs)
+            return wrapped(*args, **kwargs)
+
+        _function = _decorator(Class()._function)
+
+        result = _function(*_args, **_kwargs)
 
         self.assertEqual(result, (_args, _kwargs))
 
