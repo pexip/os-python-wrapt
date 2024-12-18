@@ -7,12 +7,11 @@ Uploaders:
 Build-Depends:
  debhelper-compat (= 11),
  dh-python,
- openstack-pkg-tools (>= 99~),
+ openstack-pkg-tools,
  python3-all,
  python3-all-dev,
  python3-pytest,
  python3-setuptools,
- python3-six,
  python3-sphinx,
  python3-sphinx-rtd-theme,
 Standards-Version: 4.1.1
@@ -48,7 +47,6 @@ Description: decorators, wrappers and monkey patching. - doc
 Package: python3-wrapt
 Architecture: any
 Depends:
- python3-six,
  ${misc:Depends},
  ${python3:Depends},
  ${shlibs:Depends},
