@@ -1,1 +1,2 @@
 do-not-run-test_proxy_attribute.patch
+Fix_classmethod_tests_with_Python_3.13.patch
