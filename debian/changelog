@@ -1,3 +1,9 @@
+python-wrapt (1.15.0-4+pexip25u1) pexip-trixie; urgency=medium
+
+  * Initial trixie build
+
+ -- Mark Hymers <mark.hymers@pexip.com>  Tue, 29 Apr 2025 22:56:56 +0100
+
 python-wrapt (1.15.0-4) unstable; urgency=medium
 
   * Switch to pybuild (Closes: #1090633).
